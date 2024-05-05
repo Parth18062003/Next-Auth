@@ -5,6 +5,7 @@ import { ModeToggle } from "./ui/dark-toggle";
 import Link from "next/link";
 import Menu from "./ui/menu-button";
 import Logo from "@/constants/logo";
+import ProfileAvatar from "@/constants/avatar";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,10 +17,11 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-10 bg-white dark:bg-black backdrop-filter backdrop-blur-lg bg-opacity-10 border-b border-gray-200 dark:border-gray-800">
       <div className=" px-4">
-        <div
-          className="flex items-center justify-between h-16"
-        >
-          <Link href="/" className="text-2xl text-gray-900 dark:text-gray-200 font-semibold translate-x-5">
+        <div className="flex items-center justify-between h-16">
+          <Link
+            href="/"
+            className="text-2xl text-gray-900 dark:text-gray-200 font-semibold translate-x-5"
+          >
             <Logo /> <span className="sr-only">Logo</span>
           </Link>
           <div className="flex space-x-4 text-gray-900 dark:text-gray-200">
@@ -33,11 +35,12 @@ const Navbar = () => {
               <Link href="#">Dashboard</Link>
               <Link href="#">About</Link>
               <Link href="#">Projects</Link>
-              <Link href="#">Contact</Link>
+              <Link href="/auth/login">Login</Link>
             </div>
           </div>
-          <div className="hidden md:flex -translate-x-5">
-          <ModeToggle />
+          <div className="hidden md:flex -translate-x-5 space-x-5">
+            <ModeToggle />
+            <ProfileAvatar />
           </div>
         </div>
         {/* Mobile Menu */}
@@ -47,7 +50,7 @@ const Navbar = () => {
               <Link href="#">Dashboard</Link>
               <Link href="#">About</Link>
               <Link href="#">Projects</Link>
-              <Link href="#">Contact</Link>
+              <Link href="/auth/login">Login</Link>
             </div>
           </div>
         )}

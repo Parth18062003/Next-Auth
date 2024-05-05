@@ -4,7 +4,7 @@ import React, { useState, useTransition } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "@/lib/utils";
-import { TbBrandGithub, TbBrandGoogle, TbMail } from "react-icons/tb";
+import { TbMail } from "react-icons/tb";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { useForm } from "react-hook-form";
 import { RegisterSchema } from "@/schema";
@@ -13,6 +13,8 @@ import * as z from "zod";
 import { register } from "@/actions/register";
 import { FormError } from "./ui/form-error";
 import { FormSuccess } from "./ui/form-success";
+import Socials from "./ui/social";
+import Link from "next/link";
 
 export function RegisterForm() {
   const [error, setError] = useState<string | undefined>("");
@@ -156,7 +158,8 @@ export function RegisterForm() {
           <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 
           <div className="flex flex-col space-y-4">
-            <button
+            <Link
+              href="/auth/login"
               className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
               type="submit"
             >
@@ -165,27 +168,8 @@ export function RegisterForm() {
                 Login with Email
               </span>
               <BottomGradient />
-            </button>
-            <button
-              className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-              type="submit"
-            >
-              <TbBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-              <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                GitHub
-              </span>
-              <BottomGradient />
-            </button>
-            <button
-              className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-              type="submit"
-            >
-              <TbBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-              <span className="text-neutral-700 dark:text-neutral-300 text-sm">
-                Google
-              </span>
-              <BottomGradient />
-            </button>
+            </Link>
+            <Socials />
           </div>
         </form>
       </Form>
