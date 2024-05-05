@@ -36,6 +36,7 @@ export function RegisterForm() {
       register(values).then((data) => {
         setError(data.error);
         setSuccess(data.success);
+        if(!data.error) {form.reset();}
       });
     });
   };
