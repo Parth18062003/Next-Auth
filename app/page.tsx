@@ -1,7 +1,17 @@
-import Image from "next/image";
+import { auth, signOut } from "@/auth";
+import { Hero } from "@/components/Hero";
 
-export default function Home() {
+const Home = async () => {
+  const session = await auth();
+  let href = "/auth/login";
+  if (session) {
+    href = "/started";
+  }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
+    <>
+      <Hero href={href} />
+    </>
   );
-}
+};
+
+export default Home;
