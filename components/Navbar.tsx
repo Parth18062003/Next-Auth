@@ -1,13 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ModeToggle } from "./ui/dark-toggle";
 import Link from "next/link";
 import Menu from "./ui/menu-button";
 import Logo from "@/constants/logo";
 import ProfileAvatar from "@/constants/avatar";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
+  const session =  useSession()
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -32,7 +34,7 @@ const Navbar = () => {
             </div>
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex space-x-4 mt-3">
-              <Link href="#">Dashboard</Link>
+              <Link href="/dashboard">Dashboard</Link>
               <Link href="#">About</Link>
               <Link href="#">Projects</Link>
               <Link href="/auth/login">Login</Link>
@@ -40,14 +42,14 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex -translate-x-5 space-x-5">
             <ModeToggle />
-            <ProfileAvatar />
+            {session && session.data ? <ProfileAvatar src={session.data.user?.image || ""}/> : null} 
           </div>
         </div>
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="md:hidden mt-3">
             <div className="flex flex-col items-end space-y-3 mb-2 text-xl">
-              <Link href="#">Dashboard</Link>
+              <Link href="/dashboard">Dashboard</Link>
               <Link href="#">About</Link>
               <Link href="#">Projects</Link>
               <Link href="/auth/login">Login</Link>

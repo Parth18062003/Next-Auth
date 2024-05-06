@@ -7,13 +7,21 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { TbLogout, TbUser } from "react-icons/tb";
 
-const ProfileAvatar = () => {
+const ProfileAvatar = ({ src }: { src?: string | undefined }) => {
+  const session = useSession();
+  const router = useRouter();
   const [gradient, setGradient] = useState(
     "linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)"
   );
 
+  const onLogout = () => {
+    signOut();
+  };
   useEffect(() => {
     const gradients = [
       "linear-gradient(90deg, rgba(9,9,121,1) 13%, rgba(0,212,255,1) 100%)",
@@ -36,15 +44,24 @@ const ProfileAvatar = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar>
-            <AvatarImage src="" />
+            <AvatarImage src={src} />
             <AvatarFallback
               style={{ backgroundImage: gradient }}
             ></AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => {}}>Dashboard</DropdownMenuItem>
-          <DropdownMenuItem>Log Out</DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => {
+              router.push("/dashboard");
+            }}
+            className="text-xl"
+          >
+            <TbUser className="mr-4"/>Dashboard
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={onLogout} className="text-xl">
+            <TbLogout className="mr-4"/>    Log Out
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
