@@ -24,7 +24,7 @@ const Dashboard = () => {
       <div className="max-w-md mx-auto mt-8">
         <Card className="bg-neutral-200 dark:bg-neutral-900">
           <CardHeader>
-            <CardTitle className="flex justify-between">{user?.name}'s Profile <DashboardAvatar  src={user?.image || ""} /></CardTitle>
+            <CardTitle className="flex justify-between">{user?.name}&apos;s Profile <DashboardAvatar  src={user?.image || ""} /></CardTitle>
             <CardDescription>{user?.email}</CardDescription>
           </CardHeader>
           <CardContent>
