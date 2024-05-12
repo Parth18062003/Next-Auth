@@ -21,6 +21,8 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         where: { email }
     });
 
+    const name = `${firstname} ${lastname}`;
+
     if (existingUser) {
         return { error: "User already exists!" }
     }
@@ -29,8 +31,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         data: {
             email,
             password: hashedPassword,
-            firstname,
-            lastname
+            name
         }
     });
 

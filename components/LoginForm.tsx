@@ -17,6 +17,7 @@ import Socials from "./ui/social";
 import { useSearchParams } from "next/navigation";
 import { Loader } from "./ui/loader";
 
+
 export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | undefined>("");
@@ -50,7 +51,7 @@ export function LoginForm() {
           if (data.success || data.error) {
             setLoading(false);
           }
-          setSuccess(data.success);
+          setSuccess(data.success)
           console.log(data.success);
           form.reset();
         }

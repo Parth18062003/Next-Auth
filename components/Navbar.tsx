@@ -42,7 +42,7 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex -translate-x-5 space-x-5">
             <ModeToggle />
-            {session && session.data ? <ProfileAvatar src={session.data.user?.image || ""}/> : null} 
+            {session.data ? <ProfileAvatar src={session.data.user?.image || ""}/> : null} 
           </div>
         </div>
         {/* Mobile Menu */}
